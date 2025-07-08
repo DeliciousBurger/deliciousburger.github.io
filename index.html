@@ -89,26 +89,14 @@
             line-height: 1.6;
         }
         
-        /* Style pour les options de service */
-        .service-display {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1rem 0 0;
-            flex-wrap: wrap;
-        }
-        
-        .service-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--white);
+        .delivery-info {
+            background-color: var(--primary);
+            color: var(--text);
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .service-item i {
-            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
         
         .instagram-banner {
@@ -153,12 +141,8 @@
         }
         
         .logo {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Bebas Neue', cursive;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            height: 180px;
+            width: auto;
         }
         
         .logo-icon {
@@ -207,12 +191,25 @@
             font-family: 'Bebas Neue', cursive;
             letter-spacing: 1px;
             text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title i {
+            transition: transform 0.3s ease;
         }
         
         .menu-items {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
+            display: none;
+        }
+        
+        .menu-items.show {
+            display: grid;
         }
         
         .menu-item {
@@ -291,27 +288,36 @@
             transform: scale(1.05);
         }
         
-        .menu-addon {
-            background-color: var(--secondary);
-            color: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            margin: 3rem 0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        .menu-checkbox {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
         }
         
-        .addon-text {
-            font-size: 1.3rem;
+        .menu-checkbox input {
+            margin-right: 10px;
+        }
+        
+        .supplements-toggle {
+            color: var(--text);
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: inline-block;
         }
         
-        .addon-price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
+        .supplements-toggle i {
+            transition: transform 0.3s ease;
+        }
+        
+        .supplements-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .supplements-container.show {
+            max-height: 500px;
         }
         
         .sauces-container {
@@ -321,6 +327,11 @@
             margin-bottom: 2rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             color: var(--text);
+            display: none;
+        }
+        
+        .sauces-container.show {
+            display: block;
         }
         
         .sauces-grid {
@@ -343,6 +354,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
+            display: none;
+        }
+        
+        .extras-grid.show {
+            display: grid;
         }
         
         .extra-item {
@@ -454,10 +470,158 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
+
+        .cart-section {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
         
+        .cart-btn {
+            background-color: var(--primary);
+            color: var(--text);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--secondary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: var(--secondary);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1001;
+        }
+        
+        .cart-panel.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .cart-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cart-item-name {
+            flex: 2;
+        }
+        
+        .cart-item-price {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .remove-item {
+            color: #ff4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .delivery-options {
+            margin: 15px 0;
+        }
+        
+        .delivery-option {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .delivery-option input {
+            margin-right: 10px;
+        }
+        
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: var(--text);
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--highlight);
+        }
+
         @media (max-width: 768px) {
             .logo {
-                font-size: 2rem;
+                height: 150px;
             }
             
             .logo-icon {
@@ -466,15 +630,6 @@
             
             .tagline {
                 font-size: 1rem;
-            }
-            
-            .service-display {
-                gap: 1rem;
-                margin-top: 0.5rem;
-            }
-            
-            .service-item {
-                font-size: 0.9rem;
             }
             
             .menu-items, .reviews-grid {
@@ -502,13 +657,25 @@
                 flex-direction: column;
                 gap: 5px;
             }
+            
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .cart-panel.open {
+                right: 0;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Instagram Banner -->
+    <div class="delivery-info">
+        Livraison gratuite à Mâcon à partir de 30€ | -5km: 5€ | +5km: 10€
+    </div>
+
     <div class="instagram-banner">
         <a href="https://www.instagram.com/deliciousburgermacon/" class="instagram-link" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram"></i> @deliciousburgermacon
@@ -518,49 +685,83 @@
     <header class="header" role="banner">
         <div class="header-content">
             <div class="logo-container">
-                <h1 class="logo">DELICIOUS BURGER</h1>
-                <div class="logo-icon">🍔</div>
+                <img src="https://i.ibb.co/qL0m4xZK/logo.png" alt="Delicious Burger" class="logo">
             </div>
-            <p class="tagline">DES BURGERS GOURMANDS À TOUT PETIT PRIX</p>
-            
-            <!-- Options de service affichées (non cliquables) -->
-            <div class="service-display">
-                <div class="service-item">
-                    <i class="fas fa-utensils"></i>
-                    <span>Sur place</span>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-takeaway-box"></i>
-                    <span>À emporter</span>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-motorcycle"></i>
-                    <span>En livraison</span>
-                </div>
-            </div>
+            <p class="tagline">DES BURGERS ET DES BAGUETTES MAISON GOURMANDS À PETIT PRIX</p>
         </div>
     </header>
     
     <div class="address-bar">
         <i class="fas fa-map-marker-alt"></i> 64 rue de Lyon, 7100 Mâcon - 
         <i class="fas fa-phone"></i> <a href="tel:+33385206818" style="color: var(--text); text-decoration: none;">03.85.20.68.18</a> - 
-        <i class="fas fa-star"></i> 4.8/5 sur 142 avis
+        <i class="fas fa-store"></i> Disponible sur Uber Eats -
+        <i class="fas fa-clock"></i> 7j/7 de 19h00 à 01h00
     </div>
     
     <main class="container" role="main">
-        <!-- Section Burgers -->
         <section class="menu-section">
-            <h2 class="section-title">NOS BURGERS</h2>
-            <div class="menu-items">
+            <h2 class="section-title" onclick="toggleSection('burgers-section')">
+                NOS BURGERS <i class="fas fa-chevron-down"></i>
+            </h2>
+            <div class="menu-items" id="burgers-section">
                 <article class="menu-item">
                     <div class="item-header">
                         <h3 class="item-name">LE SHELBY</h3>
                         <span class="item-price">8,50€</span>
                     </div>
                     <p class="item-desc">Steak 120g, oignon rouge, raclette, lardons, sauce poivre</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="shelby-menu" data-item="Menu SHELBY" data-price="3.5">
+                        <label for="shelby-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('shelby-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="shelby-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="shelby-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="shelby-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="shelby-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="shelby-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="shelby-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="shelby-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="shelby-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="shelby-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="shelby-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="shelby-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="shelby-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE SHELBY', 8.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE SHELBY', 8.5, 'shelby-menu', ['shelby-raclette', 'shelby-chevre', 'shelby-fourme', 'shelby-cheedar', 'shelby-chorizo', 'shelby-bacon', 'shelby-lardon', 'shelby-dinde', 'shelby-oeuf', 'shelby-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
@@ -571,9 +772,58 @@
                         <span class="item-price">8,50€</span>
                     </div>
                     <p class="item-desc">Steak 120g, salade, chèvre miel, cream cheese, confiture d'oignon</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="walter-menu" data-item="Menu WALTER WHITE" data-price="3.5">
+                        <label for="walter-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('walter-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="walter-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="walter-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="walter-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="walter-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="walter-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="walter-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="walter-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="walter-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="walter-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="walter-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="walter-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="walter-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE WALTER WHITE', 8.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE WALTER WHITE', 8.5, 'walter-menu', ['walter-raclette', 'walter-chevre', 'walter-fourme', 'walter-cheedar', 'walter-chorizo', 'walter-bacon', 'walter-lardon', 'walter-dinde', 'walter-oeuf', 'walter-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
@@ -584,9 +834,58 @@
                         <span class="item-price">8,50€</span>
                     </div>
                     <p class="item-desc">Steak 120g, oignon rouge, bacon, salade, cheddar, cornichon, sauce barbecue</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="scofield-menu" data-item="Menu SCOFIELD" data-price="3.5">
+                        <label for="scofield-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('scofield-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="scofield-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="scofield-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="scofield-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="scofield-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="scofield-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="scofield-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="scofield-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="scofield-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="scofield-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="scofield-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="scofield-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="scofield-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE SCOFIELD', 8.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE SCOFIELD', 8.5, 'scofield-menu', ['scofield-raclette', 'scofield-chevre', 'scofield-fourme', 'scofield-cheedar', 'scofield-chorizo', 'scofield-bacon', 'scofield-lardon', 'scofield-dinde', 'scofield-oeuf', 'scofield-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
@@ -597,9 +896,58 @@
                         <span class="item-price">8,50€</span>
                     </div>
                     <p class="item-desc">Steak 120g, salade, fourme d'ambert, oignon rouge, chorizo, sauce tartare</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="professor-menu" data-item="Menu EL PROFESSOR" data-price="3.5">
+                        <label for="professor-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('professor-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="professor-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="professor-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="professor-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="professor-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="professor-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="professor-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="professor-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="professor-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="professor-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="professor-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="professor-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="professor-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE EL PROFESSOR', 8.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE EL PROFESSOR', 8.5, 'professor-menu', ['professor-raclette', 'professor-chevre', 'professor-fourme', 'professor-cheedar', 'professor-chorizo', 'professor-bacon', 'professor-lardon', 'professor-dinde', 'professor-oeuf', 'professor-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
@@ -610,28 +958,127 @@
                         <span class="item-price">8,50€</span>
                     </div>
                     <p class="item-desc">Steak 120g, salade, oignon rouge, cheddar, jambon de dinde, sauce moutarde et miel</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="ragnar-menu" data-item="Menu RAGNAR" data-price="3.5">
+                        <label for="ragnar-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('ragnar-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="ragnar-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="ragnar-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="ragnar-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="ragnar-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="ragnar-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="ragnar-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="ragnar-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="ragnar-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="ragnar-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="ragnar-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="ragnar-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="ragnar-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE RAGNAR', 8.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE RAGNAR', 8.5, 'ragnar-menu', ['ragnar-raclette', 'ragnar-chevre', 'ragnar-fourme', 'ragnar-cheedar', 'ragnar-chorizo', 'ragnar-bacon', 'ragnar-lardon', 'ragnar-dinde', 'ragnar-oeuf', 'ragnar-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
             </div>
         </section>
         
-        <!-- Section Baguettes -->
         <section class="menu-section">
-            <h2 class="section-title">NOS BAGUETTES</h2>
-            <div class="menu-items">
+            <h2 class="section-title" onclick="toggleSection('baguettes-section')">
+                NOS BAGUETTES <i class="fas fa-chevron-down"></i>
+            </h2>
+            <div class="menu-items" id="baguettes-section">
                 <article class="menu-item">
                     <div class="item-header">
                         <h3 class="item-name">LE TEXAN</h3>
-                        <span class="item-price">7,50€</span>
+                        <span class="item-price">7,00€</span>
                     </div>
                     <p class="item-desc">Escalope marinée tex mex, cheddar, crudités, œuf, salade et sauce au choix</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="texan-menu" data-item="Menu TEXAN" data-price="3.5">
+                        <label for="texan-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('texan-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="texan-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="texan-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="texan-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="texan-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="texan-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="texan-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="texan-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="texan-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="texan-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="texan-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="texan-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="texan-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE TEXAN', 7.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE TEXAN', 7, 'texan-menu', ['texan-raclette', 'texan-chevre', 'texan-fourme', 'texan-cheedar', 'texan-chorizo', 'texan-bacon', 'texan-lardon', 'texan-dinde', 'texan-oeuf', 'texan-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
@@ -639,12 +1086,61 @@
                 <article class="menu-item">
                     <div class="item-header">
                         <h3 class="item-name">LE MONTAGNARD</h3>
-                        <span class="item-price">7,50€</span>
+                        <span class="item-price">7,00€</span>
                     </div>
                     <p class="item-desc">Escalope marinée romarin citron, raclette, crudités, sauce au choix</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="montagnard-menu" data-item="Menu MONTAGNARD" data-price="3.5">
+                        <label for="montagnard-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('montagnard-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="montagnard-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="montagnard-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="montagnard-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="montagnard-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="montagnard-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="montagnard-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="montagnard-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="montagnard-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="montagnard-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="montagnard-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="montagnard-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="montagnard-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE MONTAGNARD', 7.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE MONTAGNARD', 7, 'montagnard-menu', ['montagnard-raclette', 'montagnard-chevre', 'montagnard-fourme', 'montagnard-cheedar', 'montagnard-chorizo', 'montagnard-bacon', 'montagnard-lardon', 'montagnard-dinde', 'montagnard-oeuf', 'montagnard-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
@@ -652,29 +1148,191 @@
                 <article class="menu-item">
                     <div class="item-header">
                         <h3 class="item-name">LE CHICAGO</h3>
-                        <span class="item-price">7,50€</span>
+                        <span class="item-price">7,00€</span>
                     </div>
                     <p class="item-desc">Steak haché, crudités, cheddar, bacon et sauce au choix</p>
+                    <div class="menu-checkbox">
+                        <input type="checkbox" id="chicago-menu" data-item="Menu CHICAGO" data-price="3.5">
+                        <label for="chicago-menu">Menu (+3,50€) - Frites + Boisson</label>
+                    </div>
+                    <div class="supplements-toggle" onclick="toggleSupplements('chicago-supplements')">
+                        <i class="fas fa-plus"></i> Suppléments (+1€ chacun)
+                    </div>
+                    <div class="supplements-container" id="chicago-supplements">
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-raclette" data-item="Supplément Raclette" data-price="1">
+                            <label for="chicago-raclette">Raclette</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-chevre" data-item="Supplément Chèvre" data-price="1">
+                            <label for="chicago-chevre">Chèvre</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-fourme" data-item="Supplément Fourme d'Ambert" data-price="1">
+                            <label for="chicago-fourme">Fourme d'Ambert</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-cheedar" data-item="Supplément Cheedar" data-price="1">
+                            <label for="chicago-cheedar">Cheedar</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-chorizo" data-item="Supplément Chorizo" data-price="1">
+                            <label for="chicago-chorizo">Chorizo</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-bacon" data-item="Supplément Bacon" data-price="1">
+                            <label for="chicago-bacon">Bacon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-lardon" data-item="Supplément Lardon" data-price="1">
+                            <label for="chicago-lardon">Lardon</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-dinde" data-item="Supplément Jambon de Dinde" data-price="1">
+                            <label for="chicago-dinde">Jambon de Dinde</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-oeuf" data-item="Supplément Œuf" data-price="1">
+                            <label for="chicago-oeuf">Œuf</label>
+                        </div>
+                        <div class="menu-checkbox">
+                            <input type="checkbox" id="chicago-cornichon" data-item="Supplément Cornichon" data-price="1">
+                            <label for="chicago-cornichon">Cornichon</label>
+                        </div>
+                    </div>
                     <div class="item-actions">
-                        <button class="btn order-btn" onclick="orderItem('LE CHICAGO', 7.5)">
-                            <i class="fas fa-shopping-cart"></i> Commander
+                        <button class="btn order-btn" onclick="addToCart('LE CHICAGO', 7, 'chicago-menu', ['chicago-raclette', 'chicago-chevre', 'chicago-fourme', 'chicago-cheedar', 'chicago-chorizo', 'chicago-bacon', 'chicago-lardon', 'chicago-dinde', 'chicago-oeuf', 'chicago-cornichon'])">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
                         </button>
                     </div>
                 </article>
             </div>
         </section>
         
-        <!-- Menu Addon -->
-        <div class="menu-addon">
-            <p class="addon-text">SUPPLEMENT MENU (Frites + Boisson)</p>
-            <p class="addon-price">+3,50€</p>
-        </div>
-        
-        <!-- Section Sauces -->
         <section class="menu-section">
-            <h2 class="section-title">NOS SAUCES</h2>
-            <div class="sauces-container">
-                <p>Choisissez parmi nos délicieuses sauces maison</p>
+            <h2 class="section-title" onclick="toggleSection('boissons-section')">
+                NOS BOISSONS <i class="fas fa-chevron-down"></i>
+            </h2>
+            <div class="menu-items" id="boissons-section">
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">EAU MINÉRALE</h3>
+                        <span class="item-price">1,00€</span>
+                    </div>
+                    <p class="item-desc">Bouteille d'eau minérale 50cl</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('EAU MINÉRALE', 1)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">COCA COLA</h3>
+                        <span class="item-price">2,00€</span>
+                    </div>
+                    <p class="item-desc">Canette 33cl</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('COCA COLA', 2)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">COCA CHERRY</h3>
+                        <span class="item-price">2,00€</span>
+                    </div>
+                    <p class="item-desc">Canette 33cl</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('COCA CHERRY', 2)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">ORANGINA</h3>
+                        <span class="item-price">2,00€</span>
+                    </div>
+                    <p class="item-desc">Canette 33cl</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('ORANGINA', 2)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">ICE TEA</h3>
+                        <span class="item-price">2,00€</span>
+                    </div>
+                    <p class="item-desc">Canette 33cl</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('ICE TEA', 2)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">OASIS</h3>
+                        <span class="item-price">2,00€</span>
+                    </div>
+                    <p class="item-desc">Canette 33cl</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('OASIS', 2)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <section class="menu-section">
+            <h2 class="section-title" onclick="toggleSection('desserts-section')">
+                NOS DESSERTS <i class="fas fa-chevron-down"></i>
+            </h2>
+            <div class="menu-items" id="desserts-section">
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">TIRAMISU SPECULOOS</h3>
+                        <span class="item-price">4,50€</span>
+                    </div>
+                    <p class="item-desc">Tiramisu revisité avec des speculos</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('TIRAMISU SPECULOOS', 4.5)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h3 class="item-name">TIRAMISU NUTELLA</h3>
+                        <span class="item-price">4,50€</span>
+                    </div>
+                    <p class="item-desc">Tiramisu gourmand au Nutella</p>
+                    <div class="item-actions">
+                        <button class="btn order-btn" onclick="addToCart('TIRAMISU NUTELLA', 4.5)">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <section class="menu-section">
+            <h2 class="section-title" onclick="toggleSection('sauces-section')">
+                NOS SAUCES <i class="fas fa-chevron-down"></i>
+            </h2>
+            <div class="sauces-container" id="sauces-section">
+                <p>Choisissez parmi nos sauces</p>
                 <div class="sauces-grid">
                     <span class="sauce-tag">BURGER</span>
                     <span class="sauce-tag">BBQ</span>
@@ -689,35 +1347,35 @@
             </div>
         </section>
         
-        <!-- Section Extras -->
         <section class="menu-section">
-            <h2 class="section-title">EXTRAS</h2>
-            <div class="extras-grid">
+            <h2 class="section-title" onclick="toggleSection('extras-section')">
+                EXTRAS <i class="fas fa-chevron-down"></i>
+            </h2>
+            <div class="extras-grid" id="extras-section">
                 <article class="extra-item">
                     <h4 class="extra-name">FRITES MAISON</h4>
                     <p class="extra-price">2,50€</p>
-                    <button class="btn order-btn" onclick="orderItem('FRITES MAISON', 2.5)">
-                        <i class="fas fa-shopping-cart"></i> Commander
+                    <button class="btn order-btn" onclick="addToCart('FRITES MAISON', 2.5)">
+                        <i class="fas fa-shopping-cart"></i> Ajouter au panier
                     </button>
                 </article>
                 <article class="extra-item">
                     <h4 class="extra-name">NUGGETS (5)</h4>
                     <p class="extra-price">5,00€</p>
-                    <button class="btn order-btn" onclick="orderItem('NUGGETS (5)', 5)">
-                        <i class="fas fa-shopping-cart"></i> Commander
+                    <button class="btn order-btn" onclick="addToCart('NUGGETS (5)', 5)">
+                        <i class="fas fa-shopping-cart"></i> Ajouter au panier
                     </button>
                 </article>
                 <article class="extra-item">
                     <h4 class="extra-name">TENDERS (4)</h4>
                     <p class="extra-price">5,00€</p>
-                    <button class="btn order-btn" onclick="orderItem('TENDERS (4)', 5)">
-                        <i class="fas fa-shopping-cart"></i> Commander
+                    <button class="btn order-btn" onclick="addToCart('TENDERS (4)', 5)">
+                        <i class="fas fa-shopping-cart"></i> Ajouter au panier
                     </button>
                 </article>
             </div>
         </section>
         
-        <!-- Section Avis Clients -->
         <section class="reviews-section">
             <h2 class="reviews-title">CE QUE NOS CLIENTS DISENT DE NOUS</h2>
             <div class="reviews-grid">
@@ -748,6 +1406,46 @@
         </section>
     </main>
     
+    <div class="cart-section">
+        <button class="cart-btn" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+    </div>
+    
+    <div class="cart-panel" id="cart-panel">
+        <div class="cart-header">
+            <h3 class="cart-title">VOTRE PANIER</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+        </div>
+        
+        <div class="delivery-options">
+            <h4>Mode de récupération :</h4>
+            <div class="delivery-option">
+                <input type="radio" id="on-site" name="delivery" value="Sur place" checked>
+                <label for="on-site">Sur place</label>
+            </div>
+            <div class="delivery-option">
+                <input type="radio" id="takeaway" name="delivery" value="À emporter">
+                <label for="takeaway">À emporter</label>
+            </div>
+            <div class="delivery-option">
+                <input type="radio" id="delivery" name="delivery" value="Livraison">
+                <label for="delivery">Livraison</label>
+            </div>
+        </div>
+        
+        <div class="cart-total" id="cart-total">
+            Total: 0,00€
+        </div>
+        <button class="checkout-btn" onclick="checkout()">
+            <i class="fab fa-whatsapp"></i> Valider la commande
+        </button>
+        <p style="text-align: center; margin-top: 10px; font-size: 0.9rem;">La commande sera envoyée directement sur WhatsApp</p>
+    </div>
+    
     <footer class="footer" role="contentinfo">
         <div class="footer-links">
             <a href="/cgv" class="footer-link">Conditions Générales</a>
@@ -759,17 +1457,162 @@
     </footer>
 
     <script>
-        function orderItem(itemName, price) {
-            if(confirm(`Confirmez-vous la commande de ${itemName} pour ${price.toFixed(2).replace('.', ',')}€ ?`)) {
-                const gloriaFoodUrl = `https://www.gloriafood.com/order/Pdui5qKkqRGx5gMl1fdJOZNnTpFghZm1`;
-                const newWindow = window.open(gloriaFoodUrl, '_blank');
-                
-                if (!newWindow || newWindow.closed) {
-                    alert(`Préparez votre commande:\n\n${itemName} (${price.toFixed(2).replace('.', ',')}€)\n\nRedirection vers GloriaFood...`);
-                    window.location.href = gloriaFoodUrl;
-                }
+        let cart = [];
+        
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const title = event.currentTarget;
+            const icon = title.querySelector('i');
+            
+            section.classList.toggle('show');
+            
+            if (section.classList.contains('show')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
             }
         }
+        
+        function toggleSupplements(id) {
+            const container = document.getElementById(id);
+            const toggle = container.previousElementSibling;
+            const icon = toggle.querySelector('i');
+            
+            container.classList.toggle('show');
+            
+            if (container.classList.contains('show')) {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            } else {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+            }
+        }
+        
+        function addToCart(itemName, price, menuCheckboxId = null, supplementIds = []) {
+            cart.push({
+                name: itemName,
+                price: price
+            });
+            
+            if (menuCheckboxId) {
+                const menuCheckbox = document.getElementById(menuCheckboxId);
+                if (menuCheckbox && menuCheckbox.checked) {
+                    const menuItem = menuCheckbox.dataset.item;
+                    const menuPrice = parseFloat(menuCheckbox.dataset.price);
+                    
+                    cart.push({
+                        name: menuItem,
+                        price: menuPrice
+                    });
+                    
+                    menuCheckbox.checked = false;
+                }
+            }
+            
+            if (supplementIds && supplementIds.length > 0) {
+                supplementIds.forEach(supplementId => {
+                    const supplementCheckbox = document.getElementById(supplementId);
+                    if (supplementCheckbox && supplementCheckbox.checked) {
+                        const supplementItem = supplementCheckbox.dataset.item;
+                        const supplementPrice = parseFloat(supplementCheckbox.dataset.price);
+                        
+                        cart.push({
+                            name: supplementItem,
+                            price: supplementPrice
+                        });
+                        
+                        supplementCheckbox.checked = false;
+                    }
+                });
+            }
+            
+            updateCart();
+            showCart();
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        function updateCart() {
+            const cartItemsElement = document.getElementById('cart-items');
+            const cartCountElement = document.getElementById('cart-count');
+            const cartTotalElement = document.getElementById('cart-total');
+            
+            cartItemsElement.innerHTML = '';
+            
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">${item.price.toFixed(2).replace('.', ',')}€</div>
+                    <button class="remove-item" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
+                `;
+                cartItemsElement.appendChild(itemElement);
+                
+                total += item.price;
+            });
+            
+            cartCountElement.textContent = cart.length;
+            cartTotalElement.textContent = `Total: ${total.toFixed(2).replace('.', ',')}€`;
+        }
+        
+        function toggleCart() {
+            const cartPanel = document.getElementById('cart-panel');
+            cartPanel.classList.toggle('open');
+        }
+        
+        function showCart() {
+            const cartPanel = document.getElementById('cart-panel');
+            cartPanel.classList.add('open');
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide. Ajoutez des articles avant de valider la commande.');
+                return;
+            }
+            
+            const deliveryOption = document.querySelector('input[name="delivery"]:checked').value;
+            
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            let message = `Bonjour, je souhaite passer la commande suivante :\n\n`;
+            
+            cart.forEach(item => {
+                message += `- ${item.name} : ${item.price.toFixed(2).replace('.', ',')}€\n`;
+            });
+            
+            message += `\nTotal : ${total.toFixed(2).replace('.', ',')}€\n`;
+            message += `Mode de récupération : ${deliveryOption}\n`;
+            
+            if (deliveryOption === 'Livraison') {
+                message += `\nMerci de renseigner votre adresse complète pour la livraison.\n`;
+            }
+            
+            message += `\nMerci !`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            
+            window.open(`https://wa.me/33788744191?text=${encodedMessage}`, '_blank');
+            
+            cart = [];
+            updateCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.section-title i').forEach(icon => {
+                icon.classList.add('fa-chevron-down');
+                icon.classList.remove('fa-chevron-up');
+            });
+        });
     </script>
 </body>
 </html>
