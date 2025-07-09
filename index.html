@@ -99,6 +99,10 @@
             margin-bottom: 0.5rem;
         }
         
+        .delivery-line {
+            display: block;
+        }
+        
         .instagram-banner {
             background-color: var(--secondary);
             padding: 0.5rem 0;
@@ -168,8 +172,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 15px;
             flex-wrap: wrap;
+        }
+        
+        .address-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .container {
@@ -655,7 +665,12 @@
             
             .address-bar {
                 flex-direction: column;
-                gap: 5px;
+                gap: 10px;
+            }
+            
+            .address-item {
+                width: 100%;
+                justify-content: center;
             }
             
             .cart-panel {
@@ -666,6 +681,16 @@
             .cart-panel.open {
                 right: 0;
             }
+            
+            .delivery-info {
+                font-size: 0.8rem;
+                padding: 0.3rem;
+            }
+            
+            .delivery-line {
+                display: block;
+                margin: 2px 0;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -673,7 +698,8 @@
 </head>
 <body>
     <div class="delivery-info">
-        Livraison gratuite à Mâcon à partir de 30€ | -5km: 5€ | +5km: 10€
+        <span class="delivery-line">Livraison gratuite à Mâcon à partir de 30€</span>
+        <span class="delivery-line">-5km: 5€ | +5km: 10€</span>
     </div>
 
     <div class="instagram-banner">
@@ -692,10 +718,18 @@
     </header>
     
     <div class="address-bar">
-        <i class="fas fa-map-marker-alt"></i> 64 rue de Lyon, 7100 Mâcon - 
-        <i class="fas fa-phone"></i> <a href="tel:+33385206818" style="color: var(--text); text-decoration: none;">03.85.20.68.18</a> - 
-        <i class="fas fa-store"></i> Disponible sur Uber Eats -
-        <i class="fas fa-clock"></i> 7j/7 de 19h00 à 01h00
+        <div class="address-item">
+            <i class="fas fa-map-marker-alt"></i> 64 rue de Lyon, 7100 Mâcon
+        </div>
+        <div class="address-item">
+            <i class="fas fa-phone"></i> <a href="tel:+33385206818" style="color: var(--text); text-decoration: none;">03.85.20.68.18</a>
+        </div>
+        <div class="address-item">
+            <i class="fas fa-store"></i> Disponible sur Uber Eats
+        </div>
+        <div class="address-item">
+            <i class="fas fa-clock"></i> 7j/7 de 19h00 à 01h00
+        </div>
     </div>
     
     <main class="container" role="main">
@@ -957,7 +991,7 @@
                         <h3 class="item-name">LE RAGNAR</h3>
                         <span class="item-price">8,50€</span>
                     </div>
-                    <p class="item-desc">Steak 120g, salade, oignon rouge, cheddar, jambon de dinde, sauce moutarde et miel</p>
+                    <p class="item-desc">Steak 120g, salade, oignon rouge, cheddar, jambon de dinde, sauce moutarde-miel</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="ragnar-menu" data-item="Menu RAGNAR" data-price="3.5">
                         <label for="ragnar-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1340,8 +1374,7 @@
                     <span class="sauce-tag">TARTARE</span>
                     <span class="sauce-tag">POIVRE</span>
                     <span class="sauce-tag">MAYONNAISE</span>
-                    <span class="sauce-tag">MOUTARDE</span>
-                    <span class="sauce-tag">MIEL</span>
+                    <span class="sauce-tag">MOUTARDE-MIEL</span>
                     <span class="sauce-tag">HARISSA</span>
                 </div>
             </div>
@@ -1601,6 +1634,7 @@
             
             const encodedMessage = encodeURIComponent(message);
             
+            // Utilisation de l'URL standard WhatsApp (non business)
             window.open(`https://wa.me/33788744191?text=${encodedMessage}`, '_blank');
             
             cart = [];
