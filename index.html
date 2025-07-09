@@ -85,9 +85,23 @@
         }
         
         body {
-            background-color: var(--background);
             color: var(--white);
             line-height: 1.6;
+            background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(34, 34, 34, 0.85);
+            z-index: -1;
         }
         
         .delivery-info {
@@ -125,7 +139,7 @@
         }
         
         .header {
-            background-color: var(--secondary);
+            background-color: transparent;
             padding: 1.5rem 0;
             text-align: center;
             border-bottom: 8px solid var(--primary);
@@ -224,7 +238,7 @@
         }
         
         .menu-item {
-            background-color: var(--card-bg);
+            background-color: rgba(255, 165, 0, 0.9);
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -332,7 +346,7 @@
         }
         
         .sauces-container {
-            background-color: var(--card-bg);
+            background-color: rgba(255, 165, 0, 0.9);
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 2rem;
@@ -373,7 +387,7 @@
         }
         
         .extra-item {
-            background-color: var(--card-bg);
+            background-color: rgba(255, 165, 0, 0.9);
             border-radius: 8px;
             padding: 1.5rem;
             text-align: center;
@@ -404,7 +418,7 @@
         }
         
         .reviews-section {
-            background-color: var(--secondary);
+            background-color: rgba(34, 34, 34, 0.9);
             padding: 2rem;
             border-radius: 8px;
             margin: 3rem 0 1rem;
@@ -453,7 +467,7 @@
         }
         
         .footer {
-            background-color: var(--secondary);
+            background-color: rgba(34, 34, 34, 0.9);
             color: var(--white);
             padding: 2.5rem 0;
             text-align: center;
@@ -527,7 +541,7 @@
             right: -400px;
             width: 400px;
             height: 100vh;
-            background-color: var(--secondary);
+            background-color: rgba(34, 34, 34, 0.95);
             box-shadow: -5px 0 15px rgba(0,0,0,0.2);
             transition: right 0.3s ease;
             padding: 20px;
