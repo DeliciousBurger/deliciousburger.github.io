@@ -19,6 +19,9 @@
     
     <title>Delicious Burger Mâcon | Burger Gourmand à Petit Prix</title>
     
+    <!-- Préchargement de l'image de fond pour améliorer les performances -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80" as="image">
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -87,10 +90,28 @@
         body {
             color: var(--white);
             line-height: 1.6;
-            background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Nouvelle approche pour l'image de fond */
+            background-color: #333; /* Couleur de fond de secours */
+        }
+
+        /* Conteneur pour l'image de fond optimisée */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Priorité haute pour le chargement */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         body::before {
@@ -762,12 +783,26 @@
                 margin: 20px auto;
                 padding: 20px;
             }
+            
+            /* Optimisation spécifique pour mobile */
+            .background-image {
+                /* Pour mobile, on peut utiliser une image plus petite si nécessaire */
+                object-position: center;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Conteneur pour l'image de fond optimisée -->
+    <div class="background-container">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80" 
+             alt="Background burger" 
+             class="background-image"
+             loading="eager"> <!-- Chargement prioritaire -->
+    </div>
+
     <div class="delivery-info">
         <span class="delivery-line">Livraison gratuite à Mâcon à partir de 30€</span>
         <span class="delivery-line">-5km: 5€ | +5km: 10€</span>
