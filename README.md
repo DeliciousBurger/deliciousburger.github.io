@@ -1,33 +1,28 @@
-# Delicious Burger Mâcon - Site Web Officiel
+# 🍔 Delicious Burger Mâcon - Site Web
 
-![Delicious Burger Logo](https://www.deliciousburger-macon.fr/images/logo-delicious-burger.jpg)
+![Logo Delicious Burger](https://i.ibb.co/qL0m4xZK/logo.png)  
+*Site vitrine et menu en ligne pour le restaurant Delicious Burger à Mâcon*
 
-Site web officiel du restaurant Delicious Burger à Mâcon. Présentation de notre carte, commande en ligne et informations pratiques.
+---
 
-## Fonctionnalités
+## 🚀 Fonctionnalités
+- **Menu interactif** avec sections pliables (burgers, baguettes, desserts)
+- **Panier d'achat** avec calcul automatique des prix
+- **Commande WhatsApp** intégrée
+- **Design responsive** (mobile, tablette, desktop)
+- **Optimisation SEO** (balises meta, Schema.org)
 
-- 🍔 Menu complet avec nos burgers gourmands
-- 🥖 Sélection de baguettes artisanales
-- 🍟 Suppléments et sauces maison
-- ⭐ Avis clients intégrés
-- 📱 Design 100% responsive
-- 📞 Contact direct par téléphone
-- 📍 Localisation GPS
-- 📝 Conditions générales accessibles
+## 🌐 Lien de production
+https://www.deliciousburger-macon.fr *(exemple)*
 
-## Technologies Utilisées
+---
 
-- HTML5 sémantique
-- CSS3 moderne (variables, flexbox, grid)
-- JavaScript pour les interactions
-- Intégration GloriaFood pour les commandes
-- Optimisation SEO complète
-- Données structurées Schema.org
-- Polices Google (Bebas Neue, Montserrat)
-- Font Awesome pour les icônes
+## 🛠 Technologies Utilisées
+- **Frontend** : HTML5, CSS3, JavaScript Vanilla
+- **Librairies** : Font Awesome, Google Fonts (Montserrat, Bebas Neue)
+- **SEO** : Balises meta, JSON-LD (Schema.org)
+- **Hébergement** : *(À compléter)*
 
-## Installation
+---
 
-1. Cloner le dépôt :
-```bash
-git clone https://github.com/votre-utilisateur/delicious-burger.git
+## 📂 Structure des Fichiers
