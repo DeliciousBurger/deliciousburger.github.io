@@ -716,6 +716,74 @@
             margin: 10px 0;
         }
 
+        /* Custom Modal for Ingredients */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .custom-modal-content {
+            background-color: var(--white);
+            color: var(--text);
+            margin: 50px auto;
+            padding: 30px;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .close-custom-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .ingredient-option {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ingredient-option input {
+            margin-right: 10px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .modal-btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .modal-btn-cancel {
+            background-color: #ccc;
+            border: none;
+        }
+        
+        .modal-btn-confirm {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
         @media (max-width: 768px) {
             .logo {
                 height: 150px;
@@ -784,6 +852,12 @@
                 padding: 20px;
             }
             
+            .custom-modal-content {
+                margin: 20px auto;
+                padding: 20px;
+                width: 90%;
+            }
+            
             /* Optimisation spécifique pour mobile */
             .background-image {
                 /* Pour mobile, on peut utiliser une image plus petite si nécessaire */
@@ -849,7 +923,7 @@
                         <h3 class="item-name">LE SHELBY</h3>
                         <span class="item-price">8,50€</span>
                     </div>
-                    <p class="item-desc">Steak 120g, oignon rouge, raclette, lardons, sauce poivre</p>
+                    <p class="item-desc">Ingrédients: Steak 120g, oignon rouge, raclette, lardons, sauce poivre</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="shelby-menu" data-item="Menu SHELBY" data-price="3.5">
                         <label for="shelby-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -911,7 +985,7 @@
                         <h3 class="item-name">LE WALTER WHITE</h3>
                         <span class="item-price">8,50€</span>
                     </div>
-                    <p class="item-desc">Steak 120g, salade, chèvre miel, cream cheese, confiture d'oignon</p>
+                    <p class="item-desc">Ingrédients: Steak 120g, salade, chèvre miel, cream cheese, confiture d'oignon</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="walter-menu" data-item="Menu WALTER WHITE" data-price="3.5">
                         <label for="walter-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -973,7 +1047,7 @@
                         <h3 class="item-name">LE SCOFIELD</h3>
                         <span class="item-price">8,50€</span>
                     </div>
-                    <p class="item-desc">Steak 120g, oignon rouge, bacon, salade, cheddar, cornichon, sauce barbecue</p>
+                    <p class="item-desc">Ingrédients: Steak 120g, oignon rouge, bacon, salade, cheddar, cornichon, sauce barbecue</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="scofield-menu" data-item="Menu SCOFIELD" data-price="3.5">
                         <label for="scofield-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1035,7 +1109,7 @@
                         <h3 class="item-name">LE EL PROFESSOR</h3>
                         <span class="item-price">8,50€</span>
                     </div>
-                    <p class="item-desc">Steak 120g, salade, fourme d'ambert, oignon rouge, chorizo, sauce tartare</p>
+                    <p class="item-desc">Ingrédients: Steak 120g, salade, fourme d'ambert, oignon rouge, chorizo, sauce tartare</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="professor-menu" data-item="Menu EL PROFESSOR" data-price="3.5">
                         <label for="professor-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1097,7 +1171,7 @@
                         <h3 class="item-name">LE RAGNAR</h3>
                         <span class="item-price">8,50€</span>
                     </div>
-                    <p class="item-desc">Steak 120g, salade, oignon rouge, cheddar, jambon de dinde, sauce moutarde-miel</p>
+                    <p class="item-desc">Ingrédients: Steak 120g, salade, oignon rouge, cheddar, jambon de dinde, sauce moutarde-miel</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="ragnar-menu" data-item="Menu RAGNAR" data-price="3.5">
                         <label for="ragnar-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1166,7 +1240,7 @@
                         <h3 class="item-name">LE TEXAN</h3>
                         <span class="item-price">7,00€</span>
                     </div>
-                    <p class="item-desc">Escalope marinée tex mex, cheddar, crudités, œuf, salade et sauce au choix</p>
+                    <p class="item-desc">Ingrédients: Escalope marinée tex mex, cheddar, crudités, œuf, salade et sauce au choix</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="texan-menu" data-item="Menu TEXAN" data-price="3.5">
                         <label for="texan-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1228,7 +1302,7 @@
                         <h3 class="item-name">LE MONTAGNARD</h3>
                         <span class="item-price">7,00€</span>
                     </div>
-                    <p class="item-desc">Escalope marinée romarin citron, raclette, crudités, sauce au choix</p>
+                    <p class="item-desc">Ingrédients: Escalope marinée romarin citron, raclette, crudités, sauce au choix</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="montagnard-menu" data-item="Menu MONTAGNARD" data-price="3.5">
                         <label for="montagnard-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1290,7 +1364,7 @@
                         <h3 class="item-name">LE CHICAGO</h3>
                         <span class="item-price">7,00€</span>
                     </div>
-                    <p class="item-desc">Steak haché, crudités, cheddar, bacon et sauce au choix</p>
+                    <p class="item-desc">Ingrédients: Steak haché, crudités, cheddar, bacon et sauce au choix</p>
                     <div class="menu-checkbox">
                         <input type="checkbox" id="chicago-menu" data-item="Menu CHICAGO" data-price="3.5">
                         <label for="chicago-menu">Menu (+3,50€) - Frites + Boisson</label>
@@ -1603,8 +1677,26 @@
         </div>
     </div>
 
+    <!-- Custom Modal for Ingredients -->
+    <div id="custom-modal" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="close-custom-modal" onclick="hideCustomModal()">&times;</span>
+            <h3 id="custom-modal-title">Personnaliser votre commande</h3>
+            <p id="custom-modal-desc">Cochez les ingrédients que vous souhaitez retirer :</p>
+            <div id="custom-modal-ingredients"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="hideCustomModal()">Annuler</button>
+                <button class="modal-btn modal-btn-confirm" onclick="confirmCustomModal()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let cart = [];
+        let customerName = "";
+        let currentItem = null;
+        let currentMenuCheckboxId = null;
+        let currentSupplementIds = [];
         
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
@@ -1639,28 +1731,99 @@
         }
         
         function addToCart(itemName, price, menuCheckboxId = null, supplementIds = []) {
-            cart.push({
+            currentItem = {
                 name: itemName,
-                price: price
+                price: price,
+                removedIngredients: []
+            };
+            
+            currentMenuCheckboxId = menuCheckboxId;
+            currentSupplementIds = supplementIds || [];
+            
+            // Get the item description
+            const itemElement = event.target.closest('.menu-item');
+            const itemDesc = itemElement.querySelector('.item-desc').textContent;
+            
+            // Extract ingredients (everything after "Ingrédients:")
+            let ingredients = [];
+            if (itemDesc.includes('Ingrédients:')) {
+                ingredients = itemDesc.split('Ingrédients:')[1].split(',').map(ing => ing.trim());
+            }
+            
+            // Show the customization modal
+            showCustomModal(itemName, ingredients);
+        }
+        
+        function showCustomModal(itemName, ingredients) {
+            const modal = document.getElementById('custom-modal');
+            const title = document.getElementById('custom-modal-title');
+            const ingredientsContainer = document.getElementById('custom-modal-ingredients');
+            
+            title.textContent = `Personnaliser votre ${itemName}`;
+            ingredientsContainer.innerHTML = '';
+            
+            if (ingredients.length > 0) {
+                ingredients.forEach(ingredient => {
+                    if (ingredient) {
+                        const div = document.createElement('div');
+                        div.className = 'ingredient-option';
+                        
+                        const input = document.createElement('input');
+                        input.type = 'checkbox';
+                        input.id = `remove-${ingredient.toLowerCase().replace(/\s+/g, '-')}`;
+                        input.value = ingredient;
+                        
+                        const label = document.createElement('label');
+                        label.htmlFor = input.id;
+                        label.textContent = ingredient;
+                        
+                        div.appendChild(input);
+                        div.appendChild(label);
+                        ingredientsContainer.appendChild(div);
+                    }
+                });
+            } else {
+                ingredientsContainer.innerHTML = '<p>Aucun ingrédient à personnaliser pour ce produit.</p>';
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function hideCustomModal() {
+            const modal = document.getElementById('custom-modal');
+            modal.style.display = 'none';
+        }
+        
+        function confirmCustomModal() {
+            const modal = document.getElementById('custom-modal');
+            const checkboxes = document.querySelectorAll('#custom-modal-ingredients input[type="checkbox"]:checked');
+            
+            checkboxes.forEach(checkbox => {
+                currentItem.removedIngredients.push(checkbox.value);
             });
             
-            if (menuCheckboxId) {
-                const menuCheckbox = document.getElementById(menuCheckboxId);
+            cart.push(currentItem);
+            
+            // Handle menu if checked
+            if (currentMenuCheckboxId) {
+                const menuCheckbox = document.getElementById(currentMenuCheckboxId);
                 if (menuCheckbox && menuCheckbox.checked) {
                     const menuItem = menuCheckbox.dataset.item;
                     const menuPrice = parseFloat(menuCheckbox.dataset.price);
                     
                     cart.push({
                         name: menuItem,
-                        price: menuPrice
+                        price: menuPrice,
+                        removedIngredients: []
                     });
                     
                     menuCheckbox.checked = false;
                 }
             }
             
-            if (supplementIds && supplementIds.length > 0) {
-                supplementIds.forEach(supplementId => {
+            // Handle supplements
+            if (currentSupplementIds && currentSupplementIds.length > 0) {
+                currentSupplementIds.forEach(supplementId => {
                     const supplementCheckbox = document.getElementById(supplementId);
                     if (supplementCheckbox && supplementCheckbox.checked) {
                         const supplementItem = supplementCheckbox.dataset.item;
@@ -1668,7 +1831,8 @@
                         
                         cart.push({
                             name: supplementItem,
-                            price: supplementPrice
+                            price: supplementPrice,
+                            removedIngredients: []
                         });
                         
                         supplementCheckbox.checked = false;
@@ -1676,6 +1840,7 @@
                 });
             }
             
+            hideCustomModal();
             updateCart();
             showCart();
         }
@@ -1697,8 +1862,14 @@
             cart.forEach((item, index) => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'cart-item';
+                
+                let itemName = item.name;
+                if (item.removedIngredients && item.removedIngredients.length > 0) {
+                    itemName += ` (sans: ${item.removedIngredients.join(', ')})`;
+                }
+                
                 itemElement.innerHTML = `
-                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-name">${itemName}</div>
                     <div class="cart-item-price">${item.price.toFixed(2).replace('.', ',')}€</div>
                     <button class="remove-item" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
                 `;
@@ -1727,14 +1898,27 @@
                 return;
             }
             
+            // Ask for customer name
+            customerName = prompt("Merci d'indiquer votre nom pour la commande :");
+            if (customerName === null || customerName.trim() === "") {
+                alert("Veuillez indiquer un nom pour votre commande.");
+                return;
+            }
+            
             const deliveryOption = document.querySelector('input[name="delivery"]:checked').value;
             
             let total = cart.reduce((sum, item) => sum + item.price, 0);
             
             let message = `Bonjour, je souhaite passer la commande suivante :\n\n`;
+            message += `Nom: ${customerName}\n\n`;
             
             cart.forEach(item => {
-                message += `- ${item.name} : ${item.price.toFixed(2).replace('.', ',')}€\n`;
+                let itemLine = `- ${item.name}`;
+                if (item.removedIngredients && item.removedIngredients.length > 0) {
+                    itemLine += ` (sans: ${item.removedIngredients.join(', ')})`;
+                }
+                itemLine += ` : ${item.price.toFixed(2).replace('.', ',')}€`;
+                message += itemLine + '\n';
             });
             
             message += `\nTotal : ${total.toFixed(2).replace('.', ',')}€\n`;
@@ -1748,7 +1932,7 @@
             
             const encodedMessage = encodeURIComponent(message);
             
-            // Utilisation de l'URL standard WhatsApp (non business)
+            // Use standard WhatsApp URL (not business)
             window.open(`https://wa.me/33788744191?text=${encodedMessage}`, '_blank');
             
             cart = [];
@@ -1859,8 +2043,14 @@
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('legal-modal');
+            const customModal = document.getElementById('custom-modal');
+            
             if (event.target == modal) {
                 hideLegal();
+            }
+            
+            if (event.target == customModal) {
+                hideCustomModal();
             }
         }
 
